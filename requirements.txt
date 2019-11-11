@@ -1,5 +1,17 @@
+cairocffi==1.1.0
+CairoSVG==2.4.2
+cffi==1.13.2
+cssselect2==0.2.2
+defusedxml==0.6.0
 Django==2.2.7
 djangorestframework==3.10.3
+html5lib==1.0.1
 Pillow==6.2.1
+pycparser==2.19
+Pyphen==0.9.5
 pytz==2019.3
+six==1.13.0
 sqlparse==0.3.0
+tinycss2==1.0.2
+WeasyPrint==50
+webencodings==0.5.1

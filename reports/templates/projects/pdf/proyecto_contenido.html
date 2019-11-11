@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Portafolio KRKN.solutions</title>
+    <style>
+        body {
+            color:black;
+            background: white;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        img {
+            width: 250px; height: auto;
+        }
+        .wrapper {
+           background: gray; 
+        }
+    </style>
+</head>
+
+<body>
+    <pre>
+            {{project.img_chart|safe}}
+    </pre>
+    <img src="http://127.0.0.1:5000/project/chart">
+    <hr>
+    <div class="wrapper">
+        
+        <h1>{{project.nombre}}</h1>
+        <small>{{project.fecha_inicio}} - {{project.fecha_fin}} </small>
+        <h2>{{project.cliente.nombre}}</h2>
+
+        <p>{{project.descripcion}}</p>
+        <h2>Tecnologías</h2>
+        <ul>
+            {% for tec in project.tecnologias.all %}
+            <li>{{tec.nombre}}</li>
+            {% endfor%}
+        </ul>
+
+        <h2>Colaboradores</h2>
+        <ul>
+            {% for rol in project.colaboradores.all %}
+            <li>
+                <h3>
+                    {{rol.colaborador.nombre}}
+                    <small>{{rol.puesto}}</small>
+                </h3>
+                <p>
+                    {{rol.descripcion}}
+                </p>
+            </li>
+            {% endfor%}
+        </ul>
+
+        <h2>Archivos</h2>
+        <ul>
+            {% for file in project.archivos.all %}
+            <li>
+                <h3>
+                    {{file.nombre}}
+                    <small>{{file.created}}</small>
+                </h3>
+                <strong>{{file.tipo}}</strong>
+                <p>{{file.descripcion}}</p>
+                <span>{{file.url}}</span>
+
+            </li>
+            {% endfor%}
+        </ul>
+
+        <h2>Galería</h2>
+        <ul>
+            {% for galery in project.galerias.all %}
+            <li>
+                <h3> {{galery.nombre}} <small>{{galery.created}}</small> </h3>
+                <ul>
+                    {% for image in galery.images.all %}
+                    <li>
+                        <h4>{{image.nombre}} <small>{{image.created}}</small> </h4>
+                        <img src="{{image.src.url}}" alt="{{image.alt}}"/>
+                    </li>
+                    {% endfor%}
+                </ul>
+            </li>
+            {% endfor%}
+        </ul>
+    </div>
+</body>
+
+</html>
