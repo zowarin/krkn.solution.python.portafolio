@@ -1,0 +1,305 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700&display=swap" rel="stylesheet">
+  <link href="{% static 'css/report.css' %}" rel="stylesheet">
+  <title>Portafolio krkn.solutions</title>
+  <meta name="description" content="Portafolio krkn.solutions">
+</head>
+
+<body>
+  <article id="cover">
+    <div class="box">
+      <div class="item logo"></div>
+      <div class="item title">
+        <h1>Portafolio</h1>
+        <h2>krkn.solutions</h2>
+      </div>
+    </div>
+    <div class="box">
+      <address>
+        Querétaro, Qro.
+        México
+      </address>
+      <address>
+        contacto@krkn.solution
+        +52 442 181 26 33
+        <a href="http://krkn.solutions">http://krkn.solutions</a>
+      </address>
+    </div>
+
+  </article>
+
+  <!-- <article id="contents">
+    <h2>Contenido</h2>
+    <h3>Release the Developer</h3>
+    <ul>
+      <li><a href="#columns-title"></a></li>
+      <li><a href="#tecnologias-title"></a></li>
+      <li><a href="#estadisticas-title"></a></li>
+    </ul>
+
+    <h3>Quienes Somos</h3>
+    <ul>
+
+    </ul>
+  </article>
+
+  <article id="chapter">
+    <h2 id="chapter-title">Release the Developer</h2>
+  </article>
+
+  <article id="columns">
+    <h2 id="columns-title">Proyectos</h2>
+    <h3>Algunos de nuestros proyectos:</h3>
+    <section>
+      {% for project in range %}
+      <p>
+        <strong class="title">Sitio y Plataforma Ecofilm Festival 7ma Edición</strong><br>
+        Desarrollo web y Plataforma de Gestión del festival Fundación Hombre Naturaleza. <br>
+        <span class="cliente">Hombre Naturaleza</span> | <strong>Ciudad de México </strong> | <strong>2019</strong>
+      </p>
+      {% endfor %}
+    </section>
+  </article>
+
+  <article id="tecnologias">
+    <h2 id="tecnologias-title">Tecnologías</h2>
+    <h3>Herramientas con las que trabajo.</h3>
+    <section id="list">
+      {% for project in range %}
+      <div class="item">
+        <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="logotipo">
+        <h4>Angular</h4>
+        <a href="https://angular.io" target="_blank">https://angular.io</a>
+      </div>
+      {% endfor %}
+    </section>
+  </article> -->
+
+  <article id="estadisticas">
+    <section id="top">
+      <h2 id="estadisticas-title">Estadisticas</h2>
+
+
+      <ul>
+        <li id="proyectos">
+          <h1>18</h1>
+          <span>Proyectos</span>
+        </li>
+        <li>
+          <h1>10</h1>
+          <span>Tecnologías</span>
+        </li>
+        <li>
+          <h1>5</h1>
+          <span>Años desarrollando</span>
+        </li>
+        <li>
+          <h1>4</h1>
+          <span>Colaboración</span>
+        </li>
+      </ul>
+    </section>
+    <section id="dashboard">
+      <div class="wrapper-img">
+        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
+        <span>Titulo de la Imagen</span>
+      </div>
+      <div class="wrapper-img">
+        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
+        <span>Titulo de la Imagen</span>
+      </div>
+      <div class="wrapper-img">
+        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
+        <span>Titulo de la Imagen</span>
+      </div>
+    </section>
+  </article>
+
+  <article id="competences">
+    <h2 id="competences-title">Tecnologías</h2>
+
+    <h3>Herramientas con las que trabajo.</h3>
+
+    {% for project in range %}
+    <section id="table-content">
+      <h4>Table of contents</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mi ante, tincidunt quis vehicula
+        sed, vehicula sed augue. Cras eget ante turpis.
+      </p>
+    </section>
+    {% endfor %}
+
+    <section id="heading">
+      <h4>Heading titles and page counters</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mi ante, tincidunt quis vehicula
+        sed, vehicula sed augue. Cras eget ante turpis.
+      </p>
+    </section>
+
+    <section id="multi-columns">
+      <h4>Multi-column text</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mi ante, tincidunt quis vehicula
+        sed, vehicula sed augue. Cras eget ante turpis.
+      </p>
+    </section>
+
+    <section id="internal-links">
+      <h4>Internal links</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mi ante, tincidunt quis vehicula
+        sed, vehicula sed augue. Cras eget ante turpis.
+      </p>
+    </section>
+
+    <section id="style">
+      <h4>Different page types</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mi ante, tincidunt quis vehicula
+        sed, vehicula sed augue. Cras eget ante turpis.
+      </p>
+    </section>
+  </article>
+
+  <article id="offers">
+    <h2 id="offers-title">Big title on the first right page</h2>
+
+    <section>
+      <h4>Offer #1</h4>
+      <p>€135</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Nullam at diam eget urna consequat.</li>
+        <li>Sed fringilla quam at augue semper aliquam.</li>
+        <li>Cras nec lacus eu turpis finibus vulputate.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>Offer #2</h4>
+      <p>€175</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Nullam at diam eget urna consequat.</li>
+        <li>Sed fringilla quam at augue semper aliquam.</li>
+        <li>Mauris viverra nulla vel semper mollis.</li>
+        <li>Nulla quis massa eu urna suscipit vehicula.</li>
+        <li>Curabitur a odio id risus pharetra iaculis.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>Offer #3</h4>
+      <p>€200</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Nullam at diam eget urna consequat.</li>
+        <li>Sed fringilla quam at augue semper aliquam.</li>
+        <li>Mauris viverra nulla vel semper mollis.</li>
+        <li>Cras nec lacus eu turpis finibus vulputate.</li>
+        <li>Nulla quis massa eu urna suscipit vehicula.</li>
+        <li>Curabitur a odio id risus pharetra iaculis.</li>
+        <li>Mauris viverra nulla vel semper mollis.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul>
+    </section>
+  </article>
+
+  <article id="chapter">
+    <h2 id="chapter-title">This is a chapter of a new section</h2>
+  </article>
+
+  <article id="typography">
+    <h2 id="typography-title">About some typography features</h2>
+
+    <section>
+      <h4>Italic and Bold Text</h4>
+      <p>
+        Lorem ipsum dolor <em>sit amet, consectetur adipiscing elit.</em> Ut
+        pulvinar dolor <strong>ac orci finibus elementum. Praesent</strong>
+        sit amet ligula turpis.
+      </p>
+    </section>
+
+    <section id="small-caps">
+      <h4>Small caps text</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar
+        dolor ac orci finibus elementum.
+      </p>
+    </section>
+
+    <section id="ligatures">
+      <h4>Ligatures</h4>
+      <dl>
+        <dt>Classical</dt>
+        <dd><span class="none">Offer</span> → <span class="common">Offer</span></dd>
+        <dt>Discretionary</dt>
+        <dd><span class="none">Often</span> → <span class="discretionary">Often</span></dd>
+        <dt>Contextual</dt>
+        <dd><span class="none">#&amp;</span> → <span class="contextual">#&amp;</span></dd>
+      </dl>
+    </section>
+
+    <section id="numbers">
+      <h4>Numbers</h4>
+      <dl>
+        <dt>Fractions</dt>
+        <dd>421/42 → <span id="fractions">421/42</span></dd>
+        <dt>Ordinals</dt>
+        <dd>2a 3o → <span id="ordinals">2a 3o</span></dd>
+        <dt>Slashed zero</dt>
+        <dd>1000 → <span id="slashed">1000</span></dd>
+        <dt>Superscript</dt>
+        <dd>a2 → <span id="super">a2</span></dd>
+        <dt>Subscript</dt>
+        <dd>C8H10N4O2 → <span id="sub">C8H10N4O2</span></dd>
+        </ul>
+    </section>
+
+    <section id="figures">
+      <h4>Figures</h4>
+      <dl>
+        <dt>Lining</dt>
+        <dd>
+          <ul>
+            <li>409,280</li>
+            <li>367,112</li>
+          </ul>
+        </dd>
+        <dt>Old-Style</dt>
+        <dd>
+          <ul id="oldstyle">
+            <li>409,280</li>
+            <li>367,112</li>
+          </ul>
+        </dd>
+        <dt>Tabular</dt>
+        <dd>
+          <ul id="tabular">
+            <li>409,280</li>
+            <li>367,112</li>
+          </ul>
+        </dd>
+        <dt>Old &amp; Tab.</dt>
+        <dd>
+          <ul id="old-tabular">
+            <li>409,280</li>
+            <li>367,112</li>
+          </ul>
+        </dd>
+      </dl>
+    </section>
+  </article>
+
+
+</body>
+
+</html>
