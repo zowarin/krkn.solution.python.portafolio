@@ -3,12 +3,13 @@ from django.http import HttpResponse , HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.views import generic
 # Model's
-from projects.models import Proyecto
+from projects.models import Proyecto , Tecnologia
 # Utils PDF
 from .utils.pdf import PdfGeneratorProject
 
 def projects(request):
     projects = Proyecto.objects.all()
+    tecnologys = Tecnologia.objects.all()
     # file
     file_name = f'krkn.solution - portafolio.pdf'
     # response
@@ -18,7 +19,49 @@ def projects(request):
     # PDF
     base_url = 'http://127.0.0.1:5000/' # TODO !!!!!
     pdf_generator = PdfGeneratorProject(base_url=base_url)
-    pdf_generator.get_pdf_portafolio(projects, response)
+    
+    context = {
+        'title' : 'Portafolio' , 
+        'sub_title' : 'krkn.solutions' , 
+        'contacto' : 'contacto@krkn.solutions' ,
+        'telefono' : '+52 442 181 26 33' ,
+        'web_site' : 'http://krkn.solutions/' , 
+        'ciudad' : 'Queretaro, Qro.' ,
+        'pais' : 'México' ,
+
+        'chapters' : [
+            {
+                'chapter_title' : 'Release the Developer' ,
+                'sections' : [
+                    {
+                        'title' : 'Proyectos' ,
+                        'sub_title' : 'Algunos de nuestros proyectos:' ,
+                        'id' : 'proyectos' ,
+                        'items' : projects ,
+                        'class' : 'columns-2' ,
+                    } ,
+                    {
+                        'title' : 'Tecnologías' ,
+                        'sub_title' : 'Herramientas con las que trabajo:' ,
+                        'id' : 'tecnologias' ,
+                        'items' : tecnologys ,
+                        'class' : 'columns-3' ,
+                    } ,
+                ]
+            } , 
+        ] ,
+
+        'cover' : True ,
+        'contents' : True ,
+        'range': range(10) ,
+    }
+
+    print(context)
+    
+    pdf_generator.get_pdf_portafolio(
+        context = context ,
+        response = response , 
+    )
     return response
 
 def projects_detail(request , pk):

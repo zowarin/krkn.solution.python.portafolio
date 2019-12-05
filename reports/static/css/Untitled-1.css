@@ -1,0 +1,336 @@
+  html body article#columns {
+    /* page: portafolio; */
+    
+  }
+    html body article#columns section {
+      columns: 2;
+      column-gap: 1.5cm;
+      padding-top: 0cm;}
+      html body article#columns section p {
+        text-align: justify; }
+        html body article#columns section p .title {
+          color:black;
+          text-align: left;
+          font-size: 12pt;}
+        html body article#columns section p .cliente {
+          font-style: italic;
+          color:black;}
+
+
+
+  html body article#tecnologias {
+    page: portafolio;
+    break-after: always;}
+    html body article#tecnologias section#list {
+      columns: 3;
+      column-gap: 1cm;
+      padding-top: 0cm;
+      text-align: center;}
+      html body article#tecnologias section#list .item {
+        margin-bottom: 0.5cm;
+        display: inline-block;}
+        html body article#tecnologias section#list .item img {
+          width: auto;
+          height: 120px;}
+        html body article#tecnologias section#list .item h4 {
+          margin: 0;}
+        html body article#tecnologias section#list .item a {
+          }
+
+
+
+
+
+
+  html body article#estadisticas {
+    margin-left: -1.5cm;
+    margin-right: -3cm;
+    margin-top: -3cm;
+    page: estadistica;
+    break-after: always;
+    display: flex;
+    }
+
+    html body article#estadisticas section#top {
+      flex: 1 25%;
+      margin-top: 2cm;
+      background-color: aqua;
+    }
+
+      html body article#estadisticas section#top ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.3cm;
+      }
+      html body article#estadisticas section#top ul li {
+        background: green;
+        /* text-align: center; */
+        margin-bottom: 0.5cm;
+        display: block;
+      }
+
+      html body article#estadisticas section#top ul li h1{
+        /* text-align: center; */
+        background: red;
+        float: left;
+        /* margin: auto; */
+        /* padding-top: 0.5cm; */
+        /*  */
+        /* display: block; */
+      }
+      html body article#estadisticas section#top ul li span {
+        clear: both;
+      }
+      html body article#estadisticas section#top #proyectos__::before{
+        background: url(heading.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm;
+      }
+
+    html body article#estadisticas section#dashboard {
+      flex: 1 75%;
+      background:#e2e2e2;
+      padding: 2.0cm 1.5cm 0.5cm 0.5cm;
+      height: 28cm;
+      overflow: hidden;
+    }
+    .wrapper-img {
+      display: block;
+      background: white;
+      padding: 0;
+      margin-bottom: 0.7cm;
+      text-align: justify;
+      border: #393939 0.07cm solid;
+      border-radius: 0.05cm;
+    }
+
+    .wrapper-img img {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      margin: 0;
+
+    }
+
+    .wrapper-img span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #393939;
+      color: white;
+      font-size: 9pt;
+      padding-top: 0.1cm;
+      padding-bottom: 0.1cm;
+      font-weight: 400;
+    }
+
+    /* html body article#estadisticas section#top h1{
+      font-size: 30pt;
+      font-weight: bold;
+      border: 0.2cm solid black;
+      color:#393939;
+      background: white;
+      padding-bottom: 0.2cm;
+      padding-top: 0.2cm;
+    }
+    html body article#estadisticas section#top span{
+      color: white;
+      width: 100%;
+      background: black;
+      display: block;
+      padding-bottom: 0.3cm;
+      padding-top: 0.3cm;
+      font-size: 15pt;
+      font-weight: 400;
+    }
+    html body article#estadisticas section {
+
+      }
+      html body article#estadisticas h2 {
+
+      }
+      html body article#estadisticas section#list .item {
+        margin-bottom: 0.5cm;
+        display: inline-block;}
+        html body article#estadisticas section#list .item img {
+          width: auto;
+          height: 120px;}
+        html body article#estadisticas section#list .item h4 {
+          margin: 0;}
+        html body article#estadisticas section#list .item a {
+          text-decoration: none;
+          margin: 0;
+          font-size: 9pt;
+          color: #393939;} */
+
+
+  html body article#competences h3 {
+    background: #fbc847;
+    margin: 0.5cm -3cm 1cm;
+    padding: 1cm 1cm 1cm 3cm;
+    width: 21cm; }
+  html body article#competences section {
+    padding: .5cm 0; }
+    /* html body article#competences section#table-content::before {
+      background: url(table-content.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+      float: left;
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm; } */
+    html body article#competences section#heading::before {
+      background: url(heading.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+      float: left;
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm; }
+    html body article#competences section#multi-columns::before {
+      background: url(multi-columns.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+      float: left;
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm; }
+    html body article#competences section#internal-links::before {
+      background: url(internal-links.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+      float: left;
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm; }
+    html body article#competences section#style::before {
+      background: url(style.svg) no-repeat center #fbc847;
+      background-size: 50%;
+      content: '';
+      display: inline-block;
+      float: left;
+      height: 2cm;
+      margin-right: .5cm;
+      vertical-align: middle;
+      width: 2cm; }
+    html body article#competences section h4 {
+      margin: 0; }
+    html body article#competences section p {
+      margin-top: 0; }
+  html body article#offers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    html body article#offers h2, html body article#offers h3 {
+      width: 100%; }
+    html body article#offers section {
+      width: 30%; }
+      html body article#offers section h4 {
+        margin-bottom: 0; }
+      html body article#offers section ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 0; }
+        html body article#offers section ul li:not(:last-of-type) {
+          margin: .5cm 0; }
+      html body article#offers section p {
+        background: #fbc847;
+        display: block;
+        font-size: 15pt;
+        font-weight: 700;
+        margin-bottom: 0;
+        padding: .25cm 0;
+        text-align: center; }
+  html body article.chapter {
+    align-items: center;
+    display: flex;
+    height: 297mm;
+    justify-content: center;
+    page: chapter; }
+  html body article#typography section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1cm 0; }
+    html body article#typography section h4 {
+      border-top: 1pt solid;
+      flex: 1 25%;
+      margin: 0; }
+    html body article#typography section h4 + * {
+      flex: 1 75%;
+      margin: 0;
+      padding-left: .5cm; }
+    html body article#typography section p {
+      text-align: justify; }
+    html body article#typography section ul {
+      line-height: 2;
+      list-style: none; }
+    html body article#typography section#small-caps p {
+      font-variant: small-caps; }
+    html body article#typography section#ligatures dl {
+      display: flex;
+      flex-wrap: wrap; }
+      html body article#typography section#ligatures dl dt {
+        font-weight: 400;
+        width: 30%; }
+      html body article#typography section#ligatures dl dd {
+        flex: 1 100%;
+        margin: 0;
+        padding: 0; }
+    html body article#typography section#ligatures .none {
+      font-variant-ligatures: none; }
+    html body article#typography section#ligatures .common {
+      font-variant-ligatures: common-ligatures; }
+    html body article#typography section#ligatures .discretionary {
+      font-variant-ligatures: discretionary-ligatures; }
+    html body article#typography section#ligatures .contextual {
+      font-variant-ligatures: contextual; }
+    html body article#typography section#numbers dl {
+      display: flex;
+      flex-wrap: wrap; }
+      html body article#typography section#numbers dl dt {
+        font-weight: 400;
+        width: 30%; }
+      html body article#typography section#numbers dl dd {
+        flex: 1 100%;
+        margin: 0;
+        padding: 0; }
+    html body article#typography section#numbers #fractions {
+      font-variant-numeric: diagonal-fractions; }
+    html body article#typography section#numbers #ordinals {
+      font-variant-numeric: ordinal; }
+    html body article#typography section#numbers #slashed {
+      font-variant-numeric: slashed-zero; }
+    html body article#typography section#numbers #super {
+      font-variant-position: super; }
+    html body article#typography section#numbers #sub {
+      font-variant-position: sub; }
+    html body article#typography section#figures dl {
+      columns: 4; }
+      html body article#typography section#figures dl dt {
+        font-weight: 400; }
+      html body article#typography section#figures dl dd {
+        display: flex;
+        margin: 0;
+        padding: 0; }
+        html body article#typography section#figures dl dd ul {
+          padding: 0 1em 0 0; }
+    html body article#typography section#figures #oldstyle {
+      font-variant-numeric: oldstyle-nums; }
+    html body article#typography section#figures #tabular {
+      font-variant-numeric: tabular-nums; }
+    html body article#typography section#figures #old-tabular {
+      font-variant-numeric: oldstyle-nums tabular-nums; }

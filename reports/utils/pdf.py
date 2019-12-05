@@ -64,16 +64,16 @@ class PdfGeneratorProject():
     def get_portada_portafolio(self, projects, template_name='projects/pdf/portafolio_portada.html'):
         return self.get_document_pdf(template_name, css_string=self.css_string , context ={'projects': projects})
 
-    def get_contenido_portafolio(self, projects, template_name='projects/pdf/portafolio_contenido.html'):
-        return self.get_document_pdf(template_name, css_string=self.css_string , context ={'projects': projects , 'range': range(10)})
+    def get_contenido_portafolio(self, context, template_name='projects/pdf/portafolio_contenido.html'):
+        return self.get_document_pdf(template_name, css_string=self.css_string , context = context)
 
     def get_contraportada_portafolio(self, projects, template_name='projects/pdf/portafolio_contraportada.html'):
         return self.get_document_pdf(template_name, css_string=self.css_string , context ={'projects': projects})
 
-    def get_pdf_portafolio(self , projects, response):
+    def get_pdf_portafolio( self , context , response ):
         documents = []
         # documents.append(self.get_portada_portafolio(projects))
-        documents.append(self.get_contenido_portafolio(projects))
+        documents.append(self.get_contenido_portafolio(context))
         # for project in projects :
         #     documents.append(self.get_portada_project(project))
         #     documents.append(self.get_contenido_project(project))
