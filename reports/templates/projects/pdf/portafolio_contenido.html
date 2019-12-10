@@ -52,7 +52,7 @@
   </article>
   {% for section in chapter.sections %}
   <article class="new-page">
-    <section  id="{{section.id}}">
+    <section id="{{section.id}}">
       <h2 id="title-section-{{section.id}}">{{section.title}}</h2>
       <h3>{{section.sub_title}}</h3>
       <div class="{{section.class}}">
@@ -73,6 +73,70 @@
           <img src="{{tecnology.logotipo}}" alt="logotipo">
           <h4>{{tecnology.nombre}}</h4>
           <a href="{{tecnology.url}}" target="_blank">{{tecnology.url}}</a>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- SECCION COLABORADORES -->
+        {% if section.id == 'colaboradores'%}
+        {% for colaborador in section.items %}
+        <div class="item">
+          <ul class="datos_personales">
+            <li>NOMBRE: {{colaborador.nombre}}</li>
+            <li>EDO. CIVIL: {{colaborador.edo_civil}}</li>
+            <li>PROFESIÓN: {{colaborador.profesion}}</li>
+            <li>RFC: {{colaborador.rfc}}</li>
+            <li>RECIDENCIA: {{colaborador.recidencia}}</li>
+            <li>FECHA DE NACIMIENTO: {{colaborador.fecha_nacimiento}}</li>
+          </ul>
+
+          <h3>Educación</h3>
+          <table class="educacion">
+            <thead>
+              <tr>
+                <th>Grado Academico</th>
+                <th>Carrera</th>
+                <th>Institución</th>
+                <th>Lugar</th>
+                <th>Periodo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for edu in colaborador.educacion.all %}
+              <tr>
+                <td>{{edu.grado}}</td>
+                <td>{{edu.carrera}}</td>
+                <td>{{edu.institucion}}</td>
+                <td>{{edu.lugar}}</td>
+                <td>{{edu.periodo_inicio}} - {{edu.periodo_fin}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+       
+          <h3>Experiencia Profesional</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Compañia</th>
+                <th>Área</th>
+                <th>Posición</th>
+                <th>Actividades</th>
+                <th>Periodo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for rol in colaborador.rol_proyecto.all %}
+              <tr>
+                <td>{{rol.proyecto.cliente.nombre}}</td>
+                <td>Are</td>
+                <td>{{rol.descripcion}}</td>
+                <td>Act</td>
+                <td>{{rol.proyecto.fecha_inicio}} - {{rol.proyecto.fecha_fin}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
         {% endfor %}
         {% endif %}

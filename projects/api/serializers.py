@@ -8,12 +8,12 @@ class ColaboradorProyectoSerializer(serializers.ModelSerializer) :
 
 
 
-class RolProyectoSerializer(serializers.ModelSerializer) : 
-    puesto = serializers.StringRelatedField()
-    colaborador = ColaboradorProyectoSerializer(many = False)
-    class Meta:
-        model = RolProyecto
-        fields = ('descripcion' , 'puesto' , 'colaborador')
+# class RolProyectoSerializer(serializers.ModelSerializer) : 
+#     puesto = serializers.StringRelatedField()
+#     colaborador = ColaboradorProyectoSerializer(many = False)
+#     class Meta:
+#         model = RolProyecto
+#         fields = ('descripcion' , 'puesto' , 'colaborador')
 
 
 class ImageSerializer(serializers.ModelSerializer) : 
@@ -66,7 +66,7 @@ class ProyectoSerializer(serializers.ModelSerializer) :
 class ProyectoDetailSerializer(ProyectoSerializer) :
     archivos = ArchivoSerializer(many = True)
     galerias = GaleriaSerializer(many = True)
-    colaboradores = RolProyectoSerializer(many = True)
+    # colaboradores = RolProyectoSerializer(many = True)
     class Meta:
         model = Proyecto
         fields = (
@@ -79,24 +79,29 @@ class ProyectoDetailSerializer(ProyectoSerializer) :
             'cliente' , 
             'archivos' ,
             'galerias' ,
-            'colaboradores'
+            # 'colaboradores'
         )
 
 
-class ColaboradorRolProyectoSerializer(serializers.ModelSerializer) :
-    puesto = serializers.StringRelatedField()
-    proyecto = ProyectoSerializer(many = False)
-    class Meta:
-        model = RolProyecto
-        fields = ('descripcion' , 'proyecto' , 'puesto')
+# class ColaboradorRolProyectoSerializer(serializers.ModelSerializer) :
+#     puesto = serializers.StringRelatedField()
+#     proyecto = ProyectoSerializer(many = False)
+#     class Meta:
+#         model = RolProyecto
+#         fields = ('descripcion' , 'proyecto' , 'puesto')
 
 class PerfilLinkedSerializar(serializers.Serializer) :
     nombre = serializers.CharField(max_length=200)
 
 
 class ColaboradorDetailSerializer(ColaboradorProyectoSerializer) :
-    rol_proyecto = ColaboradorRolProyectoSerializer(many = True)
+    # rol_proyecto = ColaboradorRolProyectoSerializer(many = True)
     perfil = PerfilLinkedSerializar()
     class Meta:
         model = Colaborador
-        fields = ('id' , 'nombre' , 'rol_proyecto' , 'perfil')
+        fields = (
+            'id' , 
+            'nombre' , 
+            # 'rol_proyecto' , 
+            'perfil' ,
+        )

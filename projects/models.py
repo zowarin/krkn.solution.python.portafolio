@@ -3,8 +3,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey , GenericRelati
 from django.contrib.contenttypes.models import ContentType
 from django.utils.timezone import now
 
-
-
 # Create your models here.
 
 class Cliente(models.Model):
@@ -20,7 +18,6 @@ class Cliente(models.Model):
 
     class Meta:
         db_table = 'cliente_krkn'
-
 
 class Tecnologia(models.Model) :
     nombre = models.CharField(max_length=200)
@@ -40,7 +37,6 @@ class Tecnologia(models.Model) :
     
     class Meta:
         db_table = 'proyecto_krkn_tecnologia'
-
 
 class Proyecto(models.Model):
     cliente = models.ForeignKey(
@@ -93,7 +89,6 @@ class Proyecto(models.Model):
         ordering = ['-fecha_inicio']
         verbose_name = 'project'
         verbose_name_plural = 'projects'
-        
 
 class Archivo(models.Model) :
 
@@ -144,7 +139,6 @@ class Archivo(models.Model) :
     class Meta:
         db_table = 'proyecto_krkn_archivo'
 
-
 class Galeria(models.Model) :
     proyecto = models.ForeignKey(
         Proyecto ,
@@ -164,7 +158,6 @@ class Galeria(models.Model) :
         db_table = 'proyecto_krkn_galeria'
         ordering = ['-created']
 
-
 class Image(models.Model) :
     galeria = models.ForeignKey(
         Galeria ,
@@ -183,7 +176,6 @@ class Image(models.Model) :
         default = now, 
         editable = False 
     )
-
     
     def __str__(self):
         return f'{self.galeria.nombre} | {self.nombre}'
@@ -191,7 +183,6 @@ class Image(models.Model) :
     class Meta:
         db_table = 'proyecto_krkn_imagen_galeria'
         ordering = ['-created']
-
 
 class Puesto(models.Model):
     nombre = models.CharField(max_length=200)
@@ -206,9 +197,34 @@ class Puesto(models.Model):
     class Meta: 
         db_table = 'puesto_krkn'
 
-
 class Colaborador(models.Model) :
     nombre = models.CharField(max_length=200)
+    edo_civil = models.CharField(
+        max_length=200 ,
+        null = True , 
+        blank = True ,
+    )
+    profesion = models.CharField(
+        max_length=200 ,
+        null = True , 
+        blank = True ,
+    )
+    rfc = models.CharField(
+        max_length=200 ,
+        null = True , 
+        blank = True ,
+    )
+    recidencia = models.CharField(
+        max_length=200 ,
+        null = True , 
+        blank = True ,
+    )
+    fecha_nacimiento = models.DateField(
+        null = True ,
+        blank = True ,
+    )
+
+
 
     def __str__(self):
         return self.nombre
@@ -216,42 +232,87 @@ class Colaborador(models.Model) :
     class Meta:
         db_table = 'colaborador_krkn'
     
+class Educacion(models.Model) : 
+    colaborador = models.ForeignKey(
+        Colaborador ,
+        related_name= 'educacion' ,
+        on_delete=models.CASCADE ,
+        null = True
+    )
+    grado = models.CharField(max_length = 200)
+    carrera = models.CharField(max_length = 200)
+    institucion = models.CharField(max_length = 200)
+    lugar = models.CharField(max_length = 200)
+    periodo_inicio = models.DateField()
+    periodo_fin = models.DateField()
+    def __str__(self):
+        return self.institucion
+
+    class Meta:
+        db_table = 'colaborador_educacion_krkn'
 
 
-class RolProyecto(models.Model) :
+class ColaboradorProyecto(models.Model) : 
     proyecto = models.ForeignKey(
         Proyecto ,
-        related_name= 'colaboradores' ,
+        related_name= 'colaborador' ,
         on_delete=models.CASCADE ,
         # null = True
     ) 
-
-    puesto = models.ForeignKey(
-        Puesto ,
-        # related_name= 'actividad' ,
-        on_delete=models.CASCADE ,
-        # null = True 
-    ) 
-
     colaborador = models.ForeignKey(
         Colaborador ,
         related_name= 'rol_proyecto' ,
         on_delete=models.CASCADE ,
         # null = True
-    ) 
-    
-    
-    descripcion = models.CharField(max_length=200)
-    created = models.DateTimeField(
-        default = now, 
-        editable = False 
     )
-
+    descripcion = models.CharField(max_length=200)
+    actividades = models.TextField(
+        null = True , 
+        blank = True ,
+    )
     def __str__(self) :
-        return f'{self.proyecto.nombre} | {self.puesto.nombre} | {self.colaborador.nombre} | {self.descripcion}'
+        return f'{self.proyecto.nombre} | {self.colaborador.nombre} | {self.descripcion}'
 
     class Meta:
-        db_table = 'proyecto_krkn_rol'
-        ordering = ['-created']
-        unique_together = ('proyecto' , 'puesto' ,'colaborador')
+        db_table = 'colaborador_proyecto'
+        # ordering = ['-created']
+        unique_together = ('proyecto' , 'colaborador')
+
+
+# class RolProyecto(models.Model) :
+#     proyecto = models.ForeignKey(
+#         Proyecto ,
+#         related_name= 'colaboradores' ,
+#         on_delete=models.CASCADE ,
+#         # null = True
+#     ) 
+
+#     puesto = models.ForeignKey(
+#         Puesto ,
+#         # related_name= 'actividad' ,
+#         on_delete=models.CASCADE ,
+#         # null = True 
+#     ) 
+
+#     colaborador = models.ForeignKey(
+#         Colaborador ,
+#         related_name= 'rol_proyecto' ,
+#         on_delete=models.CASCADE ,
+#         # null = True
+#     ) 
+    
+    
+#     descripcion = models.CharField(max_length=200)
+#     created = models.DateTimeField(
+#         default = now, 
+#         editable = False 
+#     )
+
+#     def __str__(self) :
+#         return f'{self.proyecto.nombre} | {self.puesto.nombre} | {self.colaborador.nombre} | {self.descripcion}'
+
+#     class Meta:
+#         db_table = 'proyecto_krkn_rol'
+#         ordering = ['-created']
+#         unique_together = ('proyecto' , 'puesto' ,'colaborador')
     

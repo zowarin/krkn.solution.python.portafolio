@@ -3,13 +3,24 @@ from django.http import HttpResponse , HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.views import generic
 # Model's
-from projects.models import Proyecto , Tecnologia
+from projects.models import Proyecto , Tecnologia , Colaborador
 # Utils PDF
 from .utils.pdf import PdfGeneratorProject
 
 def projects(request):
     projects = Proyecto.objects.all()
     tecnologys = Tecnologia.objects.all()
+    collaborators = Colaborador.objects.all()
+
+    # print(collaborators)
+    # print([e for e in collaborators])
+
+    for colaborador in collaborators :
+        print (colaborador.rol_proyecto.all())
+        for rol in colaborador.rol_proyecto.all() :
+            print (rol.id) 
+            print (rol.proyecto)
+
     # file
     file_name = f'krkn.solution - portafolio.pdf'
     # response
@@ -19,7 +30,7 @@ def projects(request):
     # PDF
     base_url = 'http://127.0.0.1:5000/' # TODO !!!!!
     pdf_generator = PdfGeneratorProject(base_url=base_url)
-    
+    # CONTEXT
     context = {
         'title' : 'Portafolio' , 
         'sub_title' : 'krkn.solutions' , 
@@ -30,33 +41,44 @@ def projects(request):
         'pais' : 'México' ,
 
         'chapters' : [
+            # {
+            #     'chapter_title' : 'Release the Developer' ,
+            #     'sections' : [
+            #         {
+            #             'title' : 'Proyectos' ,
+            #             'sub_title' : 'Algunos de nuestros proyectos:' ,
+            #             'id' : 'proyectos' ,
+            #             'items' : projects ,
+            #             'class' : 'columns-2' ,
+            #         } ,
+            #         {
+            #             'title' : 'Tecnologías' ,
+            #             'sub_title' : 'Herramientas con las que trabajo:' ,
+            #             'id' : 'tecnologias' ,
+            #             'items' : tecnologys ,
+            #             'class' : 'columns-3' ,
+            #         } ,
+            #     ]
+            # } , 
             {
-                'chapter_title' : 'Release the Developer' ,
+                'chapter_title' : 'Quienes Somos' ,
                 'sections' : [
                     {
-                        'title' : 'Proyectos' ,
-                        'sub_title' : 'Algunos de nuestros proyectos:' ,
-                        'id' : 'proyectos' ,
-                        'items' : projects ,
-                        'class' : 'columns-2' ,
-                    } ,
-                    {
-                        'title' : 'Tecnologías' ,
-                        'sub_title' : 'Herramientas con las que trabajo:' ,
-                        'id' : 'tecnologias' ,
-                        'items' : tecnologys ,
-                        'class' : 'columns-3' ,
-                    } ,
+                        'title' : 'Curriculum Vitae' ,
+                        'sub_title' : 'Datos Personales' ,
+                        'id' : 'colaboradores' ,
+                        'items' : collaborators ,
+                        'class' : '' ,
+                    } , 
                 ]
-            } , 
+            } ,
         ] ,
 
-        'cover' : True ,
-        'contents' : True ,
+        'cover' : False ,
+        'contents' : False ,
         'range': range(10) ,
     }
-
-    print(context)
+    # print(context)
     
     pdf_generator.get_pdf_portafolio(
         context = context ,
