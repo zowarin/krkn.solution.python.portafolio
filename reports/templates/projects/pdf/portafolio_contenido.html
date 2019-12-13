@@ -35,11 +35,17 @@
     <h2>Contenido</h2>
     {% for chapter in chapters %}
     <h3>{{chapter.chapter_title}}</h3>
+    {% if chapter.id == 'collaborators'%}
     <ul>
+      {% for collaborator in chapter.items.collaborators %}
+      <li class="sub-title">{{collaborator.nombre}}</li>
       {% for section in chapter.sections %}
-      <li><a href="#title-section-{{section.id}}"></a></li>
+      <li><a href="#title-section-{{section.id}}-{{collaborator.id}}"></a></li>
       {% endfor %}
+      {% endfor %}
+
     </ul>
+    {% endif %}
     {% endfor %}
 
   </article>
@@ -47,105 +53,130 @@
 
   <!-- CAPITULOS  -->
   {% for chapter in chapters %}
-  <article class="chapter">
+  <!-- <article class="chapter">
     <h2>{{chapter.chapter_title}}</h2>
-  </article>
+  </article> -->
+  <!-- {{chapter.items.collaborators}} -->
+  {% if chapter.id == 'collaborators'%}
+  {% for colaborador in chapter.items.collaborators %}
   {% for section in chapter.sections %}
   <article class="new-page">
-    <section id="{{section.id}}">
-      <h2 id="title-section-{{section.id}}">{{section.title}}</h2>
-      <h3>{{section.sub_title}}</h3>
-      <div class="{{section.class}}">
-        <!-- SECCION PROYECTOS -->
-        {% if section.id == 'proyectos'%}
-        {% for project in section.items %}
-        <p class="item">
-          <strong class="title">{{project.nombre}}</strong>
-          <span class="descripcion">{{project.descripcion}}</span>
-          <span class="cliente">{{project.cliente.nombre}} | {{project.ciudad}} | {{project.year}}</span>
-        </p>
-        {% endfor %}
-        {% endif %}
-        <!-- SECCION TECNOLOGIAS -->
-        {% if section.id == 'tecnologias'%}
-        {% for tecnology in section.items %}
+    <section id="{{section.id}}" class="{{section.class}}">
+      <h2 id="title-section-{{section.id}}-{{colaborador.id}}">{{section.title}}</h2>
+      <!-- <pre>{{colaborador}} - {{section.id}} - {{colaborador.id}}</pre> -->
+      <!-- SECCION COLABORADORES -->
+      {% if section.id == 'cv'%}
+      <div class="cv">
         <div class="item">
-          <img src="{{tecnology.logotipo}}" alt="logotipo">
-          <h4>{{tecnology.nombre}}</h4>
-          <a href="{{tecnology.url}}" target="_blank">{{tecnology.url}}</a>
-        </div>
-        {% endfor %}
-        {% endif %}
-        <!-- SECCION COLABORADORES -->
-        {% if section.id == 'colaboradores'%}
-        {% for colaborador in section.items %}
-        <div class="item">
+          <h3>Datos Personales</h3>
           <ul class="datos_personales">
-            <li>NOMBRE: {{colaborador.nombre}}</li>
-            <li>EDO. CIVIL: {{colaborador.edo_civil}}</li>
-            <li>PROFESIÓN: {{colaborador.profesion}}</li>
-            <li>RFC: {{colaborador.rfc}}</li>
-            <li>RECIDENCIA: {{colaborador.recidencia}}</li>
-            <li>FECHA DE NACIMIENTO: {{colaborador.fecha_nacimiento}}</li>
+            <li><strong>NOMBRE:</strong> {{colaborador.nombre}}</li>
+            <li><strong>EDO. CIVIL:</strong> {{colaborador.edo_civil}}</li>
+            <li><strong>PROFESIÓN:</strong> {{colaborador.profesion}}</li>
+            <li><strong>RFC:</strong> {{colaborador.rfc}}</li>
+            <li><strong>RECIDENCIA:</strong> {{colaborador.recidencia}}</li>
+            <li><strong>FECHA DE NACIMIENTO:</strong> {{colaborador.fecha_nacimiento}}</li>
           </ul>
-
+        </div>
+        <div class="item">
           <h3>Educación</h3>
-          <table class="educacion">
-            <thead>
-              <tr>
-                <th>Grado Academico</th>
-                <th>Carrera</th>
-                <th>Institución</th>
-                <th>Lugar</th>
-                <th>Periodo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for edu in colaborador.educacion.all %}
-              <tr>
-                <td>{{edu.grado}}</td>
-                <td>{{edu.carrera}}</td>
-                <td>{{edu.institucion}}</td>
-                <td>{{edu.lugar}}</td>
-                <td>{{edu.periodo_inicio}} - {{edu.periodo_fin}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-
-          </table>
-       
-          <h3>Experiencia Profesional</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Compañia</th>
-                <th>Área</th>
-                <th>Posición</th>
-                <th>Actividades</th>
-                <th>Periodo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for rol in colaborador.rol_proyecto.all %}
-              <tr>
-                <td>{{rol.proyecto.cliente.nombre}}</td>
-                <td>Are</td>
-                <td>{{rol.descripcion}}</td>
-                <td>Act</td>
-                <td>{{rol.proyecto.fecha_inicio}} - {{rol.proyecto.fecha_fin}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <ul class="datos_educacion">
+            {% for edu in colaborador.educacion.all %}
+            <li>
+              <strong class="carrera">{{edu.carrera}}</strong>
+              <span class="institucion">{{edu.institucion}}, {{edu.lugar}}</span>
+              <span class="periodo">{{edu.periodo_inicio|date:"Y"}} - {{edu.periodo_fin|date:"Y"}}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <h3>Experiencia Profesional</h3>
+      <div class="exp_laboral">
+        <div class="box">
+          <div class="content">
+            {{colaborador.get_exp_laboral_resumen_markdown}}
+          </div>
+        </div>
+        {% for exp_laboral in colaborador.exp_laboral.all %}
+        <div class="item">
+          <h4>{{exp_laboral.cliente.nombre}}<span> - {{exp_laboral.cliente.ciudad}}</span> </h4>
+          <h5>{{exp_laboral.puesto}}</h5>
+          <div class="content-markdown">
+            {{exp_laboral.get_markdown_actividades}}
+          </div>
         </div>
         {% endfor %}
-        {% endif %}
       </div>
+      {% endif %}
+      <!-- SECCION PROYECTOS ACTIVIDADES -->
+      {% if section.id == 'proyectos_actividades'%}
+      <div class="item">
+        <h3>Actividades Realizadas</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Compañia | Posición</th>
+              <th>Actividades</th>
+              <th>Periodo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rol in colaborador.rol_proyecto.all %}
+            <tr>
+              <td>
+                <strong>{{rol.proyecto.cliente.nombre}}</strong>
+                <br> {{rol.descripcion}}
+              </td>
+              <td class="content-markdown">
+                <h4>{{rol.proyecto.nombre}}</h4>
+                <p>{{rol.proyecto.descripcion}}</p>
+                <strong>Herramientas</strong>
+                <ul>
+                  {% for tecnologia in rol.proyecto.tecnologias.all %}
+                  <li>{{tecnologia.nombre}}</li>
+                  {% endfor %}
+                </ul>
+                {{rol.get_markdown}}
+              </td>
+              <td>{{rol.proyecto.fecha_inicio|date:"F Y"}} a {{rol.proyecto.fecha_fin|date:"F Y"}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+      <!-- SECCION HERRAMIENTAS -->
+      {% if section.id == 'herramientas'%}
+      <div class="box">
+        <div class="content">
+          {{colaborador.get_exp_tec_resumen_markdown}}
+        </div>
+      </div>
+      <h3>Herramientas y Tecnologías
+        <span>
+          Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a
+          galley of type and scrambled it to make a type specimen
+          book. It has survived not only five centuries, but also the
+          leap into electronic typesetting, remaining essentially
+          unchanged.
+        </span>
+      </h3>
+      <div class="columns-4 tecnologias">
+        {% for tecnology in colaborador.herramientas %}
+        <div class="item">
+          <h4>{{tecnology.nombre}}</h4>
+          <img src="{{tecnology.logotipo}}" alt="logotipo">
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </section>
   </article>
   {% endfor %}
-
-
+  {% endfor %}
+  {% endif %}
   {% endfor %}
 
 

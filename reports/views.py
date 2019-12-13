@@ -12,15 +12,6 @@ def projects(request):
     tecnologys = Tecnologia.objects.all()
     collaborators = Colaborador.objects.all()
 
-    # print(collaborators)
-    # print([e for e in collaborators])
-
-    for colaborador in collaborators :
-        print (colaborador.rol_proyecto.all())
-        for rol in colaborador.rol_proyecto.all() :
-            print (rol.id) 
-            print (rol.proyecto)
-
     # file
     file_name = f'krkn.solution - portafolio.pdf'
     # response
@@ -51,32 +42,44 @@ def projects(request):
             #             'items' : projects ,
             #             'class' : 'columns-2' ,
             #         } ,
-            #         {
-            #             'title' : 'Tecnologías' ,
-            #             'sub_title' : 'Herramientas con las que trabajo:' ,
-            #             'id' : 'tecnologias' ,
-            #             'items' : tecnologys ,
-            #             'class' : 'columns-3' ,
-            #         } ,
+            #         # {
+            #         #     'title' : 'Tecnologías' ,
+            #         #     'sub_title' : 'Herramientas con las que trabajo:' ,
+            #         #     'id' : 'tecnologias' ,
+            #         #     'items' : tecnologys ,
+            #         #     'class' : 'columns-3' ,
+            #         # } ,
             #     ]
             # } , 
             {
-                'chapter_title' : 'Quienes Somos' ,
+                'chapter_title' : 'Colaboradores' ,
+                'id': 'collaborators' ,
+                'items' : {
+                    'collaborators': collaborators
+                } ,
                 'sections' : [
                     {
                         'title' : 'Curriculum Vitae' ,
-                        'sub_title' : 'Datos Personales' ,
-                        'id' : 'colaboradores' ,
-                        'items' : collaborators ,
+                        'id' : 'cv' ,
                         'class' : '' ,
                     } , 
+                    # {
+                    #     'title' : 'Actividades' ,
+                    #     'id' : 'proyectos_actividades' ,
+                    #     'class' : '' ,
+                    # } , 
+                    {
+                        'title' : 'Herramientas y Tecnologías' ,
+                        'id' : 'herramientas' ,
+                        'class' : '' ,
+                    } ,
+      
                 ]
             } ,
         ] ,
 
         'cover' : False ,
         'contents' : False ,
-        'range': range(10) ,
     }
     # print(context)
     

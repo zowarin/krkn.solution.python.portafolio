@@ -6,17 +6,16 @@ html {
 
 @page {
   size: A4;
-  /* size: A4 landscape; */
-  /* padding-top: 1cm; */
+  padding-top: 0.8cm;
   @bottom-right {
     background: #393939;
     content: counter(page);
-    height: .8cm;
+    height: .7cm;
     text-align: center;
-    width: .8cm;
+    width: .7cm;
     vertical-align: middle;
-    font-size: 9pt;
-    border-radius: 0.07cm;
+    font-size: 7pt;
+    border-radius: 0.05cm;
     color: white;
   }
   @top-center {
@@ -26,7 +25,7 @@ html {
     height: .05cm;
     opacity: .5;
     width: 100%;
-    margin-left: 0.5cm;
+    margin: 0;
   }
   @top-right {
     content: string(heading);
@@ -88,7 +87,7 @@ html {
 
 html {
   color: #393939;
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: 300;
   line-height: 1.5; }
   html body h1 {
@@ -104,11 +103,18 @@ html {
     font-size: 15pt;
     string-set: heading content();}
   html body h3 {
-    margin: 2.5em  0 0 0;
     color: black;
     font-weight: 500;
     padding-bottom: 1em;
     border-bottom: .25pt solid #c1c1c1; }
+    html body h3 span {
+      text-align: justify;
+      display: block;
+      font-weight: 200;
+      font-size: 10pt;
+      color: #393939;
+      margin-top: 0.5cm;
+    }
   html body h3::before {
     background: #fbc847;
     content: '';
@@ -117,8 +123,19 @@ html {
     margin-bottom: .25cm;
     width: 2cm; }
   html body h4 {
-    font-size: 13pt;
+    margin: 0;
+    font-size: 10pt;
     font-weight: 400; }
+    html body h4 span {
+      color: #393939;
+      font-size: 9pt;
+      font-weight: 200;}
+  html body h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    font-weight: 400;
+    color: black;}
   html body .item a {
     text-decoration: none;
     margin: 0;
@@ -129,12 +146,6 @@ html {
     break-before: always;
   }
 
-  html body article .columns-2 {
-    columns: 2;
-    column-gap: 1cm; }
-  html body article .columns-3 {
-    columns: 3;
-    column-gap: 1cm; }
 
 
 
@@ -220,7 +231,7 @@ html {
     html body article.chapter h2 {
       width: 100%;
       margin: 0cm;
-      padding: 0.5cm 2.5cm 0.5cm 0.5cm;
+      /* padding: 0.5cm 2.5cm 0.5cm 0.5cm; */
       text-align: center;}
     html body article.chapter h2::before{
       display: inline-block;
@@ -232,10 +243,7 @@ html {
       content: '';
       margin-right: 0.8cm;}
   /* SECCION PROYECTOS */
-  html body section {
-    padding-top: 1cm;
-  }
-  html body section#proyectos .item {
+  /* html body section#proyectos .item {
     display: inline-block;
     text-align: justify;
     border-bottom: .25pt solid #c1c1c1;
@@ -265,10 +273,10 @@ html {
       font-size: 15pt;
       line-height: 16pt;
       vertical-align: bottom;
-    }
+    } */
 
   /* SECCION TECNOLOGIAS */
-  html body section#tecnologias h3 {
+  /* html body section#tecnologias h3 {
     margin-bottom: 1cm;}
   html body section#tecnologias .item {
     display: inline-block;
@@ -279,22 +287,166 @@ html {
     padding-bottom: 0.5cm;
     text-align: center;}
     html body section#tecnologias .item img {
-      width: 100%;
-    }
+      width: 100%;}
     html body section#tecnologias .item h4 {
       margin: 0;}
     html body section#tecnologias .item a {
-      font-size: 7pt;}
+      font-size: 7pt;} */
+  /*  SECCION COLABORADORES*/
+
+.columns-2 {
+  /* background: red; */
+  width: 100%;
+  /* column-fill: balance; */
+  columns: 2;
+  column-gap: 1cm; }
+.columns-3 {
+  columns: 3;
+  column-gap: 1cm; }
+
+.columns-4 {
+  columns: 4;
+  column-gap: 0.6cm; }
 
 
+.cv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+  .cv .item {
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    display: block;
+  }
+
+ul.datos_personales strong {
+  color: black;
+}
+
+ul.datos_educacion .carrera {
+  display: block;
+  color: black;
+}
+ul.datos_educacion .institucion {
+  display: block;
+  font-size: 9pt;
+}
+ul.datos_educacion .periodo {
+  display: block;
+  font-size: 9pt;
+}
+
+/*  table contents  */
+table {
+  border: 1px solid #393939;
+  text-align: left;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td , table th {
+  border: 1px solid #393939;
+}
+
+table th {
+  font-size: 8pt;
+  text-align: center;
+  background: #393939;
+  color: white;
+  padding: 7px;
+}
+
+table td {
+  font-size: 8pt;
+  text-align: left;
+  padding: 15px;
+}
+
+table td strong {
+  color: black;
+  font-weight: bold;
+}
+
+table h4 , .item h4 {
+  text-align: justify;
+  font-weight: bold;
+}
+
+table h4::before , .item h4::before {
+  color: #fbc847;
+  content: '• ';
+  font-size: 15pt;
+  line-height: 13pt;
+  vertical-align: middle;
+}
+
+table h5::before , .item h5::before {
+  color: #393939;
+  content: '•  ';
+  font-size: 13pt;
+  line-height: 10pt;
+  vertical-align: middle;
+}
+
+.content-markdown ul {
+  margin: 0;
+  padding-left: 0.5cm;
+}
+
+.content-markdown ul li {
+  text-align: justify;
+}
+
+.content-markdown p {
+  text-align: justify;
+}
+
+.exp_laboral .content-markdown {
+  font-size: 9pt;
+  margin: 0 0 0.5cm 0 ;
+  border-bottom: .25pt solid #c1c1c1;
+}
 
 
+.box {
+  float: right;
+  width: 65%;
+  height: auto;
+  background: white;
+  padding: 0;
+  margin: 0cm -2.5cm 0.5cm 0.5cm;
+  border-left: 3pt solid white;
+}
 
+.box .content {
+  background: #fbc847;
+  padding: 0.5cm 2.5cm 0.5cm 0.5cm;
+  text-align: justify;
+  font-size: 9pt;
+  color: black;
+}
 
+.tecnologias .item {
+  display: inline-block;
+  border: .25pt solid #c1c1c1;
+  padding: 0.2cm;
+  margin-bottom: 0.2cm;
+  width: 100%;
+  text-align: center;
+}
 
-
-
-
+.tecnologias .item img {
+  width: 85%;
+}
+.tecnologias .item h4 {
+  text-align: left;
+  margin-bottom: 0.2cm;
+}
+.tecnologias .item a {
+  font-size: 7pt;}
 
 
 
