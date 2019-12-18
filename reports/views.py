@@ -11,6 +11,8 @@ def projects(request):
     projects = Proyecto.objects.all()
     tecnologys = Tecnologia.objects.all()
     collaborators = Colaborador.objects.all()
+    projects_activo = Proyecto.objects.filter(activo=True)
+    projects_portafolio = Proyecto.objects.filter(portafolio=True)
 
     # file
     file_name = f'krkn.solution - portafolio.pdf'
@@ -25,32 +27,31 @@ def projects(request):
     context = {
         'title' : 'Portafolio' , 
         'sub_title' : 'krkn.solutions' , 
-        'contacto' : 'contacto@krkn.solutions' ,
+        'contacto' : 'ivan@krkn.solutions' ,
         'telefono' : '+52 442 181 26 33' ,
         'web_site' : 'http://krkn.solutions/' , 
         'ciudad' : 'Queretaro, Qro.' ,
         'pais' : 'México' ,
 
         'chapters' : [
-            # {
-            #     'chapter_title' : 'Release the Developer' ,
-            #     'sections' : [
-            #         {
-            #             'title' : 'Proyectos' ,
-            #             'sub_title' : 'Algunos de nuestros proyectos:' ,
-            #             'id' : 'proyectos' ,
-            #             'items' : projects ,
-            #             'class' : 'columns-2' ,
-            #         } ,
-            #         # {
-            #         #     'title' : 'Tecnologías' ,
-            #         #     'sub_title' : 'Herramientas con las que trabajo:' ,
-            #         #     'id' : 'tecnologias' ,
-            #         #     'items' : tecnologys ,
-            #         #     'class' : 'columns-3' ,
-            #         # } ,
-            #     ]
-            # } , 
+            {
+                'chapter_title' : 'Release the developers' ,
+                'id': 'portafolio' ,
+                'items' : {
+                    'portafolio' : projects_portafolio ,
+                    'projects' : projects_activo ,
+                },
+                'sections' : [
+                    {
+                        'title' : 'Proyectos' ,
+                        'id' : 'projects' ,
+                    } ,
+                    {
+                        'title' : 'Portafolio' ,
+                        'id' : 'portafolio' ,
+                    } ,
+                ]
+            } , 
             {
                 'chapter_title' : 'Colaboradores' ,
                 'id': 'collaborators' ,
@@ -63,11 +64,11 @@ def projects(request):
                         'id' : 'cv' ,
                         'class' : '' ,
                     } , 
-                    # {
-                    #     'title' : 'Actividades' ,
-                    #     'id' : 'proyectos_actividades' ,
-                    #     'class' : '' ,
-                    # } , 
+                    {
+                        'title' : 'Actividades' ,
+                        'id' : 'proyectos_actividades' ,
+                        'class' : '' ,
+                    } , 
                     {
                         'title' : 'Herramientas y Tecnologías' ,
                         'id' : 'herramientas' ,
@@ -78,8 +79,8 @@ def projects(request):
             } ,
         ] ,
 
-        'cover' : False ,
-        'contents' : False ,
+        'cover' : True ,
+        'contents' : True ,
     }
     # print(context)
     

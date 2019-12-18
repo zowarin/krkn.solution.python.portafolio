@@ -207,7 +207,7 @@ html {
         margin-bottom: .25cm;
         padding-top: .25cm; }
         html body article#contents ul li::before {
-          color: #fbc847;
+          color: #393939;
           content: '• ';
           font-size: 30pt;
           line-height: 16pt;
@@ -222,6 +222,13 @@ html {
             font-size: 11pt;
             content: target-counter(attr(href), page);
             float: right; }
+          html body article#contents ul li.sub-title {
+            color: black;}
+          html body article#contents ul li.sub-title::before {
+            color: #fbc847;}
+          html body article#contents ul li.content-link {
+            padding-left: 0.5cm;
+          }
   /* PORTADA CAPITULO */
   html body article.chapter {
     align-items: center;
@@ -448,8 +455,62 @@ table h5::before , .item h5::before {
 .tecnologias .item a {
   font-size: 7pt;}
 
+.proyectos .item {
+  display: inline-block;
+  text-align: justify;
+  border-bottom: .25pt solid #c1c1c1;
+  padding-bottom: 0.25cm;
+  width: 100%;
+  margin: 0 0 0.15cm 0;
+}
 
+.proyectos .item .title {
+  text-align: justify;
+  margin: 0 0 0.08cm 0;
+  display: block;
+  color:black;
+  font-size: 9pt;}
+  .proyectos .item .tipo {
+    color: white;
+    font-size: 8pt;
+    background: #393939;
+    padding: 0.10cm;
+    border-radius: 0.10cm;
+  }
+.proyectos .item .descripcion {
+  display: block;
+  font-size: 9pt;}
+.proyectos .item .cliente {
+  display: block;
+  font-size: 8pt;
+  font-style: italic;}
 
+.proyectos .portafolio {
+  border-radius: 0.10cm;
+  border-bottom: none;
+  /* border-bottom: 1.0pt solid black; */
+  background: #fbc847;
+  padding: 0.25cm;
+}
+
+.proyectos .portafolio .title {
+  text-align: justify;
+  color: black;
+  font-size: 10pt;
+}
+.proyectos .portafolio .descripcion {
+  color: black;
+  font-size: 9pt;
+}
+
+.proyectos .portafolio .title::before {
+  color: white;
+  content: '\2605';
+  font-size: 12pt;
+  line-height: 13pt;
+  vertical-align: top;
+  margin-right: 0.15cm;
+}
 
 
 

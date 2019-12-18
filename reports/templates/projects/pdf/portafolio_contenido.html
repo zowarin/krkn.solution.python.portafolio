@@ -40,10 +40,21 @@
       {% for collaborator in chapter.items.collaborators %}
       <li class="sub-title">{{collaborator.nombre}}</li>
       {% for section in chapter.sections %}
-      <li><a href="#title-section-{{section.id}}-{{collaborator.id}}"></a></li>
+      <li class="content-link"><a href="#title-section-{{section.id}}-{{collaborator.id}}"></a></li>
       {% endfor %}
       {% endfor %}
-
+    </ul>
+    {% endif %}
+    {% if chapter.id == 'portafolio'%}
+    <ul>
+      {% for section in chapter.sections %}
+      <li class="sub-title"><a href="#title-section-{{section.id}}"></a></li>
+      {% if section.id == 'portafolio'%}
+      {% for project in chapter.items.portafolio %}
+      <li class="content-link"><a href="#title-portafolio-{{project.id}}"></a></li>
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
     </ul>
     {% endif %}
     {% endfor %}
@@ -53,17 +64,15 @@
 
   <!-- CAPITULOS  -->
   {% for chapter in chapters %}
-  <!-- <article class="chapter">
+  <article class="chapter">
     <h2>{{chapter.chapter_title}}</h2>
-  </article> -->
-  <!-- {{chapter.items.collaborators}} -->
+  </article>
   {% if chapter.id == 'collaborators'%}
   {% for colaborador in chapter.items.collaborators %}
   {% for section in chapter.sections %}
   <article class="new-page">
     <section id="{{section.id}}" class="{{section.class}}">
       <h2 id="title-section-{{section.id}}-{{colaborador.id}}">{{section.title}}</h2>
-      <!-- <pre>{{colaborador}} - {{section.id}} - {{colaborador.id}}</pre> -->
       <!-- SECCION COLABORADORES -->
       {% if section.id == 'cv'%}
       <div class="cv">
@@ -177,48 +186,76 @@
   {% endfor %}
   {% endfor %}
   {% endif %}
+
+  {% if chapter.id == 'portafolio'%}
+  {% for section in chapter.sections %}
+  <article class="new-page">
+    <section id="{{section.id}}" class="{{section.class}}">
+      <h2 id="title-section-{{section.id}}">{{section.title}}</h2>
+      <!-- SECCION PROYECTOS -->
+      {% if section.id == 'projects'%}
+      <h3>Nuestros Proyectos
+        <span>
+          Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a
+          galley of type and scrambled it to make a type specimen
+          book. It has survived not only five centuries, but also the
+          leap into electronic typesetting, remaining essentially
+          unchanged.
+        </span>
+      </h3>
+      <div class="columns-2 proyectos">
+        {% for project in chapter.items.projects %}
+        {% if project.portafolio == True %}
+        <p class="item portafolio">
+          <strong class="title">{{project.nombre}} </strong>
+          <span class="tipo">{{project.tipo}}</span>
+          <span class="descripcion">{{project.descripcion}}</span>
+          <span class="cliente">{{project.cliente.nombre}} | {{project.ciudad}} | {{project.year}}</span>
+        </p>
+        {% else %}
+        <p class="item">
+          <strong class="title">{{project.nombre}}</strong>
+          <span class="cliente">{{project.cliente.nombre}} | {{project.ciudad}} | {{project.year}}</span>
+        </p>
+        {% endif%}
+        {% endfor %}
+      </div>
+      {% endif%}
+      <!-- // SECCION PROYECTOS -->
+      <!-- SECCION PORTAFOLIO -->
+      {% if section.id == 'portafolio'%}
+      <h3>Portafolio krkn.solutions
+        <span>
+          Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a
+          galley of type and scrambled it to make a type specimen
+          book. It has survived not only five centuries, but also the
+          leap into electronic typesetting, remaining essentially
+          unchanged.
+        </span>
+      </h3>
+      <div class="portafolio-krkn">
+        {% for project in chapter.items.portafolio %}
+        <article class="new-page">
+          <h2 id="title-portafolio-{{project.id}}">{{project.nombre}}</h2>
+          <pre>{{project}}</pre>
+        </article>
+        {% endfor %}
+      </div>
+      {% endif%}
+      <!-- // SECCION PORTAFOLIO -->
+    </section>
+  </article>
+  {% endfor%}
+  {% endif %}
+
+
+
+  <!-- // CAPITULOS  -->
   {% endfor %}
 
 
-  <!-- <article id="estadisticas">
-    <section id="top">
-      <h2 id="estadisticas-title">Estadisticas</h2>
-
-
-      <ul>
-        <li id="proyectos">
-          <h1>18</h1>
-          <span>Proyectos</span>
-        </li>
-        <li>
-          <h1>10</h1>
-          <span>Tecnologías</span>
-        </li>
-        <li>
-          <h1>5</h1>
-          <span>Años desarrollando</span>
-        </li>
-        <li>
-          <h1>4</h1>
-          <span>Colaboración</span>
-        </li>
-      </ul>
-    </section>
-    <section id="dashboard">
-      <div class="wrapper-img">
-        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
-        <span>Titulo de la Imagen</span>
-      </div>
-      <div class="wrapper-img">
-        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
-        <span>Titulo de la Imagen</span>
-      </div>
-      <div class="wrapper-img">
-        <img src="https://miro.medium.com/max/1222/1*lbNAVBW3_4x2aEsmcgem0A.png" alt="">
-        <span>Titulo de la Imagen</span>
-      </div>
-    </section>
-  </article> -->
 
   <!-- <article id="competences">
     <h2 id="competences-title">Tecnologías</h2>

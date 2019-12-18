@@ -81,7 +81,34 @@ class Proyecto(models.Model):
         blank = True , 
     )
     tecnologias = models.ManyToManyField(Tecnologia)
-    
+
+    portafolio =  models.BooleanField(
+        default =  False
+    )
+
+    PROJECT = 'Proyecto'
+    FRONT_END = 'Front End'
+    DESING = 'Diseño'
+    MOBILE_APP = 'Aplicación Mobile'
+    BACK_END = 'Back End'
+    OTRO = 'Otro'
+
+
+    TIPO_PROYECTO_CHOISE = (
+        (PROJECT , 'Proyecto') ,
+        (FRONT_END , 'Front End Development') ,
+        (DESING , 'Diseño Gráfico') ,
+        (MOBILE_APP , 'Aplicación Mobile') ,
+        (BACK_END , 'Back End Development') ,
+        (OTRO , 'Otro') ,
+    )
+
+    tipo = models.CharField(
+        max_length = 50,
+        choices = TIPO_PROYECTO_CHOISE,
+        default = FRONT_END,
+    )
+
     @property
     def year(self) :
         return 2019
