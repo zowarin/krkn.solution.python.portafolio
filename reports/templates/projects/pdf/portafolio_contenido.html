@@ -64,9 +64,9 @@
 
   <!-- CAPITULOS  -->
   {% for chapter in chapters %}
-  <article class="chapter">
+  <!-- <article class="chapter">
     <h2>{{chapter.chapter_title}}</h2>
-  </article>
+  </article> -->
   {% if chapter.id == 'collaborators'%}
   {% for colaborador in chapter.items.collaborators %}
   {% for section in chapter.sections %}
@@ -75,7 +75,7 @@
       <h2 id="title-section-{{section.id}}-{{colaborador.id}}">{{section.title}}</h2>
       <!-- SECCION COLABORADORES -->
       {% if section.id == 'cv'%}
-      <div class="cv">
+      <!-- <div class="cv">
         <div class="item">
           <h3>Datos Personales</h3>
           <ul class="datos_personales">
@@ -83,7 +83,7 @@
             <li><strong>EDO. CIVIL:</strong> {{colaborador.edo_civil}}</li>
             <li><strong>PROFESIÓN:</strong> {{colaborador.profesion}}</li>
             <li><strong>RFC:</strong> {{colaborador.rfc}}</li>
-            <li><strong>RECIDENCIA:</strong> {{colaborador.recidencia}}</li>
+            <li><strong>RESIDENCIA:</strong> {{colaborador.recidencia}}</li>
             <li><strong>FECHA DE NACIMIENTO:</strong> {{colaborador.fecha_nacimiento}}</li>
           </ul>
         </div>
@@ -99,25 +99,85 @@
             {% endfor %}
           </ul>
         </div>
-      </div>
+      </div> -->
       <h3>Experiencia Profesional</h3>
       <div class="exp_laboral">
         <div class="box">
           <div class="content">
-            {{colaborador.get_exp_laboral_resumen_markdown}}
+            <div class="content-markdown content-markdown-exp-laboral">
+              {{colaborador.get_exp_laboral_resumen_markdown}}
+            </div>
+            <div class="b_white">
+              <h6>Datos Personales</h6>
+              <ul class="datos_personales">
+                <li><strong>NOMBRE:</strong> {{colaborador.nombre}}</li>
+                <li><strong>EDO. CIVIL:</strong> {{colaborador.edo_civil}}</li>
+                <li><strong>PROFESIÓN:</strong> {{colaborador.profesion}}</li>
+                <li><strong>RFC:</strong> {{colaborador.rfc}}</li>
+                <li><strong>RESIDENCIA:</strong> {{colaborador.recidencia}}</li>
+                <li><strong>FECHA DE NACIMIENTO:</strong> {{colaborador.fecha_nacimiento}}</li>
+              </ul>
+              <h6>Educación</h6>
+              <ul class="datos_educacion">
+                {% for edu in colaborador.educacion.all %}
+                <li>
+                  <strong class="carrera">{{edu.carrera}}</strong>
+                  <span class="institucion">{{edu.institucion}}, {{edu.lugar}}</span>
+                  <span class="periodo">{{edu.periodo_inicio|date:"Y"}} - {{edu.periodo_fin|date:"Y"}}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
         </div>
         {% for exp_laboral in colaborador.exp_laboral.all %}
         <div class="item">
-          <h4>{{exp_laboral.cliente.nombre}}<span> - {{exp_laboral.cliente.ciudad}}</span> </h4>
-          <h5>{{exp_laboral.puesto}}</h5>
-          <div class="content-markdown">
-            {{exp_laboral.get_markdown_actividades}}
+          <h4>{{exp_laboral.cliente.nombre}}</h4>
+          <h5>{{exp_laboral.puesto}}
+            <span>
+              {{exp_laboral.cliente.ciudad}} | {{exp_laboral.fecha_inicio|date:"F Y"}}
+              {% if not exp_laboral.actualidad %}
+              - {{exp_laboral.fecha_fin|date:"F Y"}}
+              {% endif %}
+              {% if exp_laboral.actualidad %}
+              - <strong>Actualidad</strong>
+              {% endif %}
+            </span>
+          </h5>
+          <div class="content-exp-laboral">
+            <div class="content-markdown">
+              {{exp_laboral.get_markdown_actividades}}
+            </div>
+            {% if exp_laboral.IsProyectos%}
+            <div class="proyectos-exp-laboral">
+              <h6>Proyecto(s)</h6>
+              <ul>
+                {% for p in exp_laboral.proyectos %}
+                <li>
+                  <div class="title">{{p.nombre}}</div>
+                  <div class="content-markdown">
+                    {{p.get_markdown_descripcion}}
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div class="proyectos-exp-laboral">
+              <h6>Tecnología y Herramientas</h6>
+              {% for h in exp_laboral.herramientas %}
+              <span class="proyectos-exp-laboral-tec">{{h}}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
       </div>
       {% endif %}
+
+
+
       <!-- SECCION PROYECTOS ACTIVIDADES -->
       {% if section.id == 'proyectos_actividades'%}
       <div class="item">
@@ -139,7 +199,7 @@
               </td>
               <td class="content-markdown">
                 <h4>{{rol.proyecto.nombre}}</h4>
-                <p>{{rol.proyecto.descripcion}}</p>
+                <p>{{rol.proyecto.get_markdown_descripcion}}</p>
                 <strong>Herramientas</strong>
                 <ul>
                   {% for tecnologia in rol.proyecto.tecnologias.all %}
@@ -148,7 +208,10 @@
                 </ul>
                 {{rol.get_markdown}}
               </td>
-              <td>{{rol.proyecto.fecha_inicio|date:"F Y"}} a {{rol.proyecto.fecha_fin|date:"F Y"}}</td>
+              <td>
+                {{rol.proyecto.fecha_inicio|date:"F Y"}}
+                a {{rol.proyecto.fecha_fin|date:"F Y"}}
+              </td>
             </tr>
             {% endfor %}
           </tbody>

@@ -14,6 +14,14 @@ def projects(request):
     projects_activo = Proyecto.objects.filter(activo=True)
     projects_portafolio = Proyecto.objects.filter(portafolio=True)
 
+    # for colaborador in collaborators :
+    #     print(colaborador)
+    #     for exp_laboral in colaborador.exp_laboral.all() :
+    #         print(exp_laboral)
+    #         print(exp_laboral.cliente.proyecto_set.all())
+    #         # print(exp_laboral.cliente.get_project.all())
+    # Proyecto.objects.filter(portafolio__exact=True)
+
     # file
     file_name = f'krkn.solution - portafolio.pdf'
     # response
@@ -34,24 +42,24 @@ def projects(request):
         'pais' : 'México' ,
 
         'chapters' : [
-            {
-                'chapter_title' : 'Release the developers' ,
-                'id': 'portafolio' ,
-                'items' : {
-                    'portafolio' : projects_portafolio ,
-                    'projects' : projects_activo ,
-                },
-                'sections' : [
-                    {
-                        'title' : 'Proyectos' ,
-                        'id' : 'projects' ,
-                    } ,
-                    {
-                        'title' : 'Portafolio' ,
-                        'id' : 'portafolio' ,
-                    } ,
-                ]
-            } , 
+            # {
+            #     'chapter_title' : 'Release the developers' ,
+            #     'id': 'portafolio' ,
+            #     'items' : {
+            #         'portafolio' : projects_portafolio ,
+            #         'projects' : projects_activo ,
+            #     },
+            #     'sections' : [
+            #         {
+            #             'title' : 'Proyectos' ,
+            #             'id' : 'projects' ,
+            #         } ,
+            #         {
+            #             'title' : 'Portafolio' ,
+            #             'id' : 'portafolio' ,
+            #         } ,
+            #     ]
+            # } , 
             {
                 'chapter_title' : 'Colaboradores' ,
                 'id': 'collaborators' ,
@@ -64,23 +72,23 @@ def projects(request):
                         'id' : 'cv' ,
                         'class' : '' ,
                     } , 
-                    {
-                        'title' : 'Actividades' ,
-                        'id' : 'proyectos_actividades' ,
-                        'class' : '' ,
-                    } , 
-                    {
-                        'title' : 'Herramientas y Tecnologías' ,
-                        'id' : 'herramientas' ,
-                        'class' : '' ,
-                    } ,
+                    # {
+                    #     'title' : 'Actividades' ,
+                    #     'id' : 'proyectos_actividades' ,
+                    #     'class' : '' ,
+                    # } , 
+                    # {
+                    #     'title' : 'Herramientas y Tecnologías' ,
+                    #     'id' : 'herramientas' ,
+                    #     'class' : '' ,
+                    # } ,
       
                 ]
             } ,
         ] ,
 
-        'cover' : True ,
-        'contents' : True ,
+        'cover' : False ,
+        'contents' : False ,
     }
     # print(context)
     

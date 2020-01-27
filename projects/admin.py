@@ -13,7 +13,7 @@ class TextFieldMarkdown(admin.ModelAdmin) :
 
 
 admin.site.register(Cliente)
-admin.site.register(Proyecto)
+admin.site.register(Proyecto , TextFieldMarkdown)
 admin.site.register(Puesto)
 admin.site.register(Tecnologia)
 admin.site.register(Archivo)

@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from django.utils.safestring import mark_safe
 
 from markdown_deux import markdown
+from datetime import datetime
 
 # Create your models here.
 
@@ -52,8 +53,8 @@ class Proyecto(models.Model):
         on_delete=models.SET_NULL , 
         null = True ,
         blank = True ,
-        related_name="cliente" ,
-        related_query_name="cliente" ,
+        # related_name="cliente" ,
+        # related_query_name="cliente" ,
     )
     nombre = models.CharField(
         max_length=200
@@ -116,6 +117,10 @@ class Proyecto(models.Model):
     def __str__(self):
         return self.nombre
 
+    def get_markdown_descripcion(self) :
+        content = self.descripcion
+        markdown_text = markdown(content)
+        return mark_safe(markdown_text)
 
     class Meta:
         db_table = 'proyecto_krkn'
@@ -309,6 +314,7 @@ class Educacion(models.Model) :
 
     class Meta:
         db_table = 'colaborador_educacion_krkn'
+        ordering = ['-periodo_fin']
 
 class ColaboradorProyecto(models.Model) : 
     proyecto = models.ForeignKey(
@@ -372,14 +378,60 @@ class ColaboradorCliente(models.Model) :
         blank = True ,
     )
 
+    fecha_inicio = models.DateField(
+        default = now
+    )
+
+    fecha_fin = models.DateField(
+        null = True ,
+        blank = True , 
+    )
+
+    actualidad = models.BooleanField(
+        default=False ,
+    )
+
     def get_markdown_actividades(self) :
         content = self.actividades
         markdown_text = markdown(content)
         return mark_safe(markdown_text)
 
+    def get_markdown_proyectos(self) :
+        content = ''
+        proyectos = self.cliente.proyecto_set.filter(activo=True)
+        for p in proyectos :
+            content += '- ***' + p.nombre +'*** '
+            content += p.descripcion
+            content += '\n'
+        markdown_text = markdown(content)
+        return mark_safe(markdown_text)
+    
+    def IsProyectos(self) :
+        return self.cliente.proyecto_set.filter(activo=True).count() > 0
+
+    def proyectos(self) :
+        return self.cliente.proyecto_set.filter(activo=True)
+        
+    def herramientas(self) : 
+        list_herramientas = []
+        proyectos = self.cliente.proyecto_set.filter(activo=True)
+        for p in proyectos :
+            for tec in p.tecnologias.all():
+                if tec not in list_herramientas:
+                    list_herramientas.append(tec)
+        # for rol in self.rol_proyecto.all() :
+        #     for tec in rol.proyecto.tecnologias.all():
+        #         if tec not in list_herramientas:
+        #             list_herramientas.append(tec)
+        return list_herramientas
+
+
     def __str__(self) :
-        return f'{self.cliente.nombre} | {self.colaborador.nombre} | {self.puesto} '
+        return f'{self.colaborador.nombre} | {self.cliente.nombre} | {self.puesto} | {self.fecha_inicio} | {self.fecha_fin} '
 
     class Meta:
         db_table = 'colaborador_cliente'
         unique_together = ('cliente' , 'colaborador')
+        ordering = ['-actualidad','-fecha_inicio' , '-fecha_fin']
+
+    
